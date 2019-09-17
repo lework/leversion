@@ -37,7 +37,8 @@
               <a-list-item-meta>
                 <div slot="description">
                   托管: <a-tag color="#8CD790">{{ item.hosting }}</a-tag>
-                  类别: <a-tag color="#2db7f5">{{ item.type }}</a-tag>
+                  类别: <a-tag color="#2db7f5"
+                         @click="tagChange(item.type)">{{ item.type }}</a-tag>
                   版本: <a-tag color="#108ee9"
                          @click="tagClick(item.project, item.body)">{{ item.name || item.tag_name }}</a-tag>
                   创建时间: <a-tag color="#F17F42">{{ item.created_at || "None"  }}</a-tag>
