@@ -18,6 +18,7 @@ import requests
 
 source_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'source.json')
 data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../static/data/data.json')
+docs_data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../docs/static/data/data.json')
 
 token = os.environ.get('GITHUB_TOKEN', '')
 if token == '':
@@ -133,8 +134,11 @@ result['total'] = len(result['data'])
 result['updated_at'] = datetime.utcfromtimestamp(time.mktime(now.timetuple())).isoformat() + 'Z'
 
 if result['data']:
+    dumps_result = json.dumps(result)
     with open(data_file, 'w') as f:
-        f.write(json.dumps(result))
+        f.write(dumps_result)
+    with open(docs_data_file, 'w') as f:
+        f.write(dumps_result)
 
 end = datetime.now()
 print("[结束时间] %s" % end)
