@@ -27,9 +27,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Push
-      uses: github-actions-x/commit@master
+      uses: github-actions-x/commit@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        push_branch: 'master'
-        commit_message: 'This is an github action commit.'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        push-branch: 'master'
+        commit-message: 'This is an github action commit.'
         force-add: 'true'
