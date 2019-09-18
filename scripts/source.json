@@ -1,0 +1,395 @@
+[
+  {
+    "project": "Kubernetes",
+    "repo": "kubernetes/kubernetes",
+    "type": "Orchestration",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "kind",
+    "repo": "kubernetes-sigs/kind",
+    "type": "Orchestration",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Minikube",
+    "repo": "kubernetes/minikube",
+    "type": "Orchestration",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Rancher",
+    "repo": "rancher/rancher",
+    "type": "pass",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "kubesphere",
+    "repo": "kubesphere/kubesphere",
+    "type": "pass",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "k3s",
+    "repo": "rancher/k3s",
+    "type": "Orchestration",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Kustomize",
+    "repo": "kubernetes-sigs/kustomize",
+    "type": "Config",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Flannel",
+    "repo": "coreos/flannel",
+    "type": "Network",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "scope",
+    "repo": "weaveworks/scope",
+    "type": "Network",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Prometheus",
+    "repo": "prometheus/prometheus",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Alertmanager",
+    "repo": "prometheus/alertmanager",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "zabbix",
+    "repo": "zabbix/zabbix",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Pushgateway",
+    "repo": "prometheus/pushgateway",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "grafana",
+    "repo": "grafana/grafana",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Envoy",
+    "repo": "envoyproxy/envoy",
+    "type": "Proxy",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Nginx",
+    "repo": "nginx/nginx",
+    "type": "Proxy",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Openresty",
+    "repo": "openresty/openresty",
+    "type": "Proxy",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Traefik",
+    "repo": "containous/traefik",
+    "type": "Proxy",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "CoreDNS",
+    "repo": "coredns/coredns",
+    "type": "Discovery",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Consul",
+    "repo": "hashicorp/consul",
+    "type": "Discovery",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "ontainerd",
+    "repo": "containerd/containerd",
+    "type": "Container",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Fluentd",
+    "repo": "fluent/fluentd",
+    "type": "Log",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Elasticsearch",
+    "repo": "elastic/elasticsearch",
+    "type": "Log",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "beats",
+    "repo": "elastic/beats",
+    "type": "Log",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Kibana",
+    "repo": "elastic/kibana",
+    "type": "Log",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "logstash",
+    "repo": "elastic/logstash",
+    "type": "Log",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Linkerd",
+    "repo": "linkerd/linkerd",
+    "type": "ServiceMesh",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Istio",
+    "repo": "istio/istio",
+    "type": "ServiceMesh",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "maesh",
+    "repo": "containous/maesh",
+    "type": "ServiceMesh",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "kuma",
+    "repo": "Kong/kuma",
+    "type": "ServiceMesh",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Helm",
+    "repo": "helm/helm",
+    "type": "package",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Rook",
+    "repo": "rook/rook",
+    "type": "Storage",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "etcd",
+    "repo": "etcd-io/etcd",
+    "type": "kv-Store",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "tikv",
+    "repo": "tikv/tikv",
+    "type": "kv-Store",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Harbor",
+    "repo": "goharbor/harbor",
+    "type": "Registry",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Distribution",
+    "repo": "docker/distribution",
+    "type": "Registry",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "cri-o",
+    "repo": "cri-o/cri-o",
+    "type": "Container",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Docker-ce",
+    "repo": "docker/docker-ce",
+    "type": "Container",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Docker-compose",
+    "repo": "docker/compose",
+    "type": "Container",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Drone",
+    "repo": "drone/drone",
+    "type": "Ci",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Jenkins",
+    "repo": "jenkinsci/jenkins",
+    "type": "Ci",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "walle",
+    "repo": "meolu/walle-web",
+    "type": "Ci",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "haproxy",
+    "repo": "haproxy/haproxy",
+    "type": "proxy",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "gitea",
+    "repo": "go-gitea/gitea",
+    "type": "versionControl",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "gogs",
+    "repo": "gogs/gogs",
+    "type": "versionControl",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "gitlab-ce",
+    "repo": "gitlabhq/gitlabhq",
+    "type": "versionControl",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "influxdb",
+    "repo": "influxdata/influxdb",
+    "type": "db",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "mongodb",
+    "repo": "mongodb/mongo",
+    "type": "db",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "redis",
+    "repo": "antirez/redis",
+    "type": "db",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "mysql",
+    "repo": "mysql/mysql-server",
+    "type": "db",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "postgres",
+    "repo": "postgres/postgres",
+    "type": "db",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "ansible",
+    "repo": "ansible/ansible",
+    "type": "DevOps",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z",
+    "version": "tag"
+  },
+  {
+    "project": "ceph",
+    "repo": "ceph/ceph",
+    "type": "Storage",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "glusterfs",
+    "repo": "gluster/glusterfs",
+    "type": "Storage",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "jumpserver",
+    "repo": "jumpserver/jumpserver",
+    "type": "DevOps",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Archery",
+    "repo": "hhyo/Archery",
+    "type": "DevOps",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  }
+]
