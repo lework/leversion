@@ -28,8 +28,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Push
       run: |
-        git config --global user.name 'lework' \
-        && git config --global user.email 'lework@yeah.net' \
-        && git add static/data/data.json \
-        && git commit -m 'This is an github action commit' --allow-empty \
-        && git push -u origin HEAD"
+        apt-get install git
+        git config --global user.name 'lework'
+        git config --global user.email 'lework@yeah.net'
+        git add static/data/data.json
+        git commit -m 'This is an github action commit' --allow-empty
+        git push -u origin HEAD"
