@@ -1,4 +1,4 @@
-# leversion ![GitHub](https://img.shields.io/github/license/lework/leversion)
+# leversion ![](https://github.com/lework/leversion/workflows/checkVersion/badge.svg) ![GitHub](https://img.shields.io/github/license/lework/leversion) 
 
 > 列出开源软件的最新版本(List the latest version of open source software)
 

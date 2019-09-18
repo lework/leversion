@@ -3,7 +3,7 @@ name:  checkVersion
 on: [push]
 
 jobs:
-  build:
+  check:
 
     runs-on: ubuntu-latest
     strategy:
@@ -29,7 +29,7 @@ jobs:
     - name: Push
       uses: github-actions-x/commit@v2.0
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.TOKEN }}
         push-branch: 'master'
         commit-message: 'This is an github action commit.'
         force-add: 'true'
