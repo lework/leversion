@@ -16,8 +16,8 @@ from datetime import datetime
 import requests
 
 
-source_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scripts/source.json')
-data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/data/data.json')
+source_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'source.json')
+data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../static/data/data.json')
 
 token = os.environ.get('GITHUB_TOKEN', '')
 if token == '':
