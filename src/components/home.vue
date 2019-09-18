@@ -2,7 +2,8 @@
   <div class="home">
     <div class="header">
       <div class="container">
-        <span class="title">LE-Version</span>
+        <span class="title"><a href="/">LE-Version</a></span>
+        <span class="title-desc"> 列出开源软件的最新版本</span>
       </div>
     </div>
     <div class="main">
@@ -30,7 +31,13 @@
           <a-list itemLayout="horizontal"
                   :pagination="pagination"
                   :dataSource="listData">
-            <div slot="header"><b>更新时间: </b>{{ updated_at.toLocaleString() }} <b> 统计数目: </b>{{ total }} </div>
+            <div slot="header"><b>更新时间: </b>{{ updated_at.toLocaleString() }} <b> 统计数目: </b>{{ total }}
+              <div class="header-switch">
+                <a-switch checkedChildren="Shields"
+                          unCheckedChildren="Shields"
+                          @click="switchCheck" />
+              </div>
+            </div>
             <a-list-item slot="renderItem"
                          slot-scope="item, index"
                          key="item.title">
@@ -42,6 +49,13 @@
                   版本: <a-tag color="#108ee9"
                          @click="tagClick(item.project, item.body)">{{ item.name || item.tag_name }}</a-tag>
                   创建时间: <a-tag color="#F17F42">{{ item.created_at || "None"  }}</a-tag>
+                  <span v-if="shieldsShow">shield: </span>
+                  <img v-if="shieldsShow && item.html_url.indexOf('release') !== -1"
+                       alt="GitHub release (latest by date)"
+                       :src="'https://img.shields.io/github/v/release/'+ item.repo">
+                  <img v-if="shieldsShow && item.html_url.indexOf('commit') !== -1"
+                       alt="GitHub tag (latest by date)"
+                       :src="'https://img.shields.io/github/v/tag/'+ item.repo ">
                   <div class="version-info"
                        v-if="item.project === project">
                     <a-divider orientation="left">
@@ -61,7 +75,15 @@
           </a-list>
         </a-spin>
       </div>
+      <div class="footer">
+        <p><a href="https://github.com/lework/leversion/issues"
+             target="_blank">告诉我们</a>，我们可能会把它带给您！</p>
+        leversion ©2019 Created by Lework <a href="https://github.com/lework/leversion"
+           target="_blank">GitHub</a>
+      </div>
+
     </div>
+
   </div>
 </template>
 
@@ -81,12 +103,21 @@ export default {
       },
       readmeContent: '',
       project: '',
-      spinning: true
+      spinning: true,
+      shieldsShow: false,
+      timer: ''
     }
   },
   watch: {
   },
   methods: {
+    switchCheck (b) {
+      this.spinning = true
+      this.shieldsShow = b
+      this.timer = setTimeout(() => {
+        this.spinning = false
+      }, parseInt(Math.random() * 1000 + 1000))
+    },
     tagClick (project, data) {
       if (this.project !== '' && this.project === project) {
         this.project = ''
@@ -151,6 +182,9 @@ export default {
   },
   mounted () {
     this._getData()
+  },
+  beforeDestroy () {
+    this.timer && clearTimeout(this.timer)
   }
 }
 </script>
@@ -183,6 +217,10 @@ export default {
   font-size: 26px;
   font-weight: 500;
   font-family: "微软雅黑";
+}
+.title-desc {
+  color: rgba(0, 0, 0, 0.45);
+  margin-left: 10px;
 }
 
 .list-title {
@@ -220,5 +258,14 @@ export default {
 .version-info {
   margin: 20px;
   color: black;
+}
+.header-switch {
+  float: right;
+}
+.footer {
+  text-align: center;
+  line-height: 32px;
+  padding: 20px 0;
+  color: rgba(0, 0, 0, 0.45);
 }
 </style>
