@@ -2,14 +2,14 @@
   <div class="home">
     <div class="header">
       <div class="container">
-        <span class="title"><a href="/">LE-Version</a></span>
-        <span class="title-desc"> 列出开源软件的最新版本</span>
+        <span class="title"><a href="#">LE-Version</a></span>
+        <span class="title-desc"> 列出开源软件的当前版本</span>
       </div>
     </div>
     <div class="main">
       <a-back-top />
       <div class="search">
-        <a-input-search placeholder="输入项目名称,类别"
+        <a-input-search placeholder="输入user/repo,Container"
                         v-model="search_text"
                         @search="onSearch"
                         enterButton="搜索..." />
@@ -46,8 +46,10 @@
                   托管: <a-tag color="#8CD790">{{ item.hosting }}</a-tag>
                   类别: <a-tag color="#2db7f5"
                          @click="tagChange(item.type)">{{ item.type }}</a-tag>
-                  版本: <a-tag color="#108ee9"
+                  当前版本: <a-tag color="#108ee9"
                          @click="tagClick(item.project, item.body)">{{ item.name || item.tag_name }}</a-tag>
+                  <a-tag color="#5bd1d7"
+                         @click="lastClick(item.project, item.html_url, item.repo)">最近版本</a-tag>
                   创建时间: <a-tag color="#F17F42">{{ item.created_at || "None"  }}</a-tag>
                   <span v-if="shieldsShow">shield: </span>
                   <img v-if="shieldsShow && item.html_url.indexOf('release') !== -1"
@@ -56,14 +58,34 @@
                   <img v-if="shieldsShow && item.html_url.indexOf('commit') !== -1"
                        alt="GitHub tag (latest by date)"
                        :src="'https://img.shields.io/github/v/tag/'+ item.repo ">
+
                   <div class="version-info"
                        v-if="item.project === project">
-                    <a-divider orientation="left">
-                      <a target="_blank"
-                         style="font-size: 20px;"
-                         :href="item.html_url">{{ item.name || item.tag_name }}</a></a-divider>
-                    <div v-html="readmeContent">
-                    </div>
+                    <a-spin :spinning="versionSpinning">
+                      <div v-if="showLast">
+                        <a-divider orientation="left">
+                          <span style="font-size: 16px;">最近10个版本</span>
+                        </a-divider>
+                        <a-timeline>
+                          <template v-for="(last, index) in lastData">
+                            <a-timeline-item :key="index">
+                              <a target="_blank"
+                                 :href="last.html_url">
+                                {{ last.name || last.tag_name }}</a> [{{last.created_at}}]
+
+                            </a-timeline-item>
+                          </template>
+                        </a-timeline>
+                      </div>
+                      <div v-if="showInfo">
+                        <a-divider orientation="left">
+                          <a target="_blank"
+                             style="font-size: 20px;"
+                             :href="item.html_url">{{ item.name || item.tag_name }}</a></a-divider>
+                        <div v-html="readmeContent">
+                        </div>
+                      </div>
+                    </a-spin>
                   </div>
                 </div>
                 <a slot="title"
@@ -105,12 +127,62 @@ export default {
       project: '',
       spinning: true,
       shieldsShow: false,
-      timer: ''
+      timer: '',
+      showInfo: false,
+      showLast: false,
+      versionSpinning: true,
+      lastData: []
     }
   },
   watch: {
   },
   methods: {
+    lastClick (project, url, repo) {
+      this.versionSpinning = true
+      if (this.project === project && this.showLast) {
+        this.showLast = false
+        this.project = ''
+        return
+      }
+      if (this.project !== project && url.indexOf('release') !== -1) {
+        let repoUrl = 'https://api.github.com/repos/' + repo + '/releases?per_page=10'
+        this.$axios.get(repoUrl).then((res) => {
+          this.lastData = res.data
+          this.versionSpinning = false
+        }).catch((e) => {
+          this.$message.error('获取数据失败')
+          console.log(e)
+        })
+      } else if (this.project !== project && url.indexOf('commit') !== -1) {
+        let graphqlUrl = 'https://api.github.com/graphql'
+        let postData = {
+          'query': '{repository(owner: "' + repo.split('/')[0] + '", name: "' + repo.split('/')[1] + '") {refs(refPrefix: "refs/tags/", first: 10, orderBy: {field: TAG_COMMIT_DATE, direction: DESC}) {edges {node {name target {commitUrl ... on Tag {tagger {date}} ... on Commit {committedDate}}}}}}}'
+        }
+        let token = '99510f2ccf40e496d1e97dbec9f31cb16770b884'
+        let headers = { 'Content-Type': 'application/json; charset=utf-8', 'Authorization': 'token ' + token }
+        this.$axios.post(graphqlUrl, postData, { headers }).then((res) => {
+          let lastTags = res.data['data']['repository']['refs']['edges']
+          this.lastData = []
+          for (let item in lastTags) {
+            this.lastData.push({
+              'tag_name': lastTags[item]['node']['name'],
+              'html_url': lastTags[item]['node']['target']['commitUrl'] || '',
+              'created_at': lastTags[item]['node']['target'].hasOwnProperty('tagger') ? lastTags[item]['node']['target']['tagger']['date'] : lastTags[item]['node']['target']['committedDate']
+            })
+          }
+          this.versionSpinning = false
+        }).catch((e) => {
+          this.$message.error('获取数据失败')
+          console.log(e)
+        })
+      } else {
+        this.versionSpinning = false
+      }
+
+      this.project = project
+      this.showLast = true
+      this.showInfo = false
+    },
     switchCheck (b) {
       this.spinning = true
       this.shieldsShow = b
@@ -119,13 +191,18 @@ export default {
       }, parseInt(Math.random() * 1000 + 1000))
     },
     tagClick (project, data) {
-      if (this.project !== '' && this.project === project) {
-        this.project = ''
+      this.versionSpinning = true
+      if (this.project === project && this.showInfo) {
         this.readmeContent = ''
+        this.project = ''
+        this.showInfo = false
         return
       }
-      this.project = project
       this.readmeContent = marked(data || 'None')
+      this.project = project
+      this.showInfo = true
+      this.showLast = false
+      this.versionSpinning = false
     },
     tagChange (value) {
       this.search_text = value
@@ -155,6 +232,7 @@ export default {
         }
         this.spinning = false
       }).catch((e) => {
+        this.$message.error('获取数据失败')
         console.log(e)
       })
     },
@@ -176,6 +254,7 @@ export default {
         this.total = this.listData.length
         this.updated_at = new Date()
       }).catch((e) => {
+        this.$message.error('获取数据失败')
         console.log(e)
       })
     }
