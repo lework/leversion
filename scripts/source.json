@@ -9,33 +9,75 @@
   {
     "project": "kind",
     "repo": "kubernetes-sigs/kind",
-    "type": "Orchestration",
+    "type": "Installer",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
     "project": "Minikube",
     "repo": "kubernetes/minikube",
-    "type": "Orchestration",
+    "type": "Installer",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "kubespray",
+    "repo": "kubernetes-sigs/kubespray",
+    "type": "Installer",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "kops",
+    "repo": "kubernetes/kops",
+    "type": "Installer",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Kubeless",
+    "repo": "kubeless/kubeless",
+    "type": "Installer",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Knative",
+    "repo": "knative/serving",
+    "type": "Installer",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
     "project": "Rancher",
     "repo": "rancher/rancher",
-    "type": "pass",
+    "type": "Pass",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
     "project": "kubesphere",
     "repo": "kubesphere/kubesphere",
-    "type": "pass",
+    "type": "Pass",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "k3s",
+    "project": "Portainer",
+    "repo": "portainer/portainer",
+    "type": "Pass",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Flynn",
+    "repo": "flynn/flynn",
+    "type": "Pass",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "K3s",
     "repo": "rancher/k3s",
     "type": "Orchestration",
     "hosting": "github",
@@ -56,8 +98,22 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "scope",
+    "project": "Scope",
     "repo": "weaveworks/scope",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Cni",
+    "repo": "containernetworking/cni",
+    "type": "Network",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Ovs",
+    "repo": "openvswitch/ovs",
     "type": "Network",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
@@ -99,7 +155,7 @@
   },
   {
     "project": "Envoy",
-    "repo": "envoyproxy/envoy",
+    "repo": "envoyProxy/envoy",
     "type": "Proxy",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
@@ -140,7 +196,7 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "ontainerd",
+    "project": "Containerd",
     "repo": "containerd/containerd",
     "type": "Container",
     "hosting": "github",
@@ -161,7 +217,7 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "beats",
+    "project": "Beats",
     "repo": "elastic/beats",
     "type": "Log",
     "hosting": "github",
@@ -175,8 +231,15 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "logstash",
+    "project": "Logstash",
     "repo": "elastic/logstash",
+    "type": "Log",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Graylog",
+    "repo": "Graylog2/graylog2-server",
     "type": "Log",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
@@ -226,7 +289,21 @@
   {
     "project": "etcd",
     "repo": "etcd-io/etcd",
-    "type": "kv-Store",
+    "type": "Discovery",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Nacos",
+    "repo": "alibaba/nacos",
+    "type": "Discovery",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Eureka",
+    "repo": "Netflix/eureka",
+    "type": "Discovery",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
@@ -287,99 +364,176 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "walle",
+    "project": "JenkinsX",
+    "repo": "jenkins-x/jx",
+    "type": "Ci",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Walle",
     "repo": "meolu/walle-web",
     "type": "Ci",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "haproxy",
-    "repo": "haproxy/haproxy",
-    "type": "proxy",
+    "project": "Argo",
+    "repo": "argoproj/argo",
+    "type": "Ci",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "gitea",
+    "project": "Tekton",
+    "repo": "tektoncd/pipeline",
+    "type": "Ci",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Flux",
+    "repo": "fluxcd/flux",
+    "type": "Ci",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "GoCD",
+    "repo": "gocd/gocd",
+    "type": "Ci",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "HaProxy",
+    "repo": "haProxy/haProxy",
+    "type": "Proxy",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Kong",
+    "repo": "Kong/kong",
+    "type": "Gateway",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Sentinel",
+    "repo": "alibaba/Sentinel",
+    "type": "Gateway",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Gitea",
     "repo": "go-gitea/gitea",
-    "type": "versionControl",
+    "type": "VersionControl",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "gogs",
+    "project": "Gogs",
     "repo": "gogs/gogs",
-    "type": "versionControl",
+    "type": "VersionControl",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "gitlab-ce",
+    "project": "Gitlab-ce",
     "repo": "gitlabhq/gitlabhq",
-    "type": "versionControl",
+    "type": "VersionControl",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "influxdb",
-    "repo": "influxdata/influxdb",
-    "type": "db",
+    "project": "InfluxDb",
+    "repo": "influxdata/influxDb",
+    "type": "Db",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "mongodb",
-    "repo": "mongodb/mongo",
-    "type": "db",
+    "project": "MongoDb",
+    "repo": "mongoDb/mongo",
+    "type": "Db",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "redis",
+    "project": "Redis",
     "repo": "antirez/redis",
-    "type": "db",
+    "type": "Db",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "mysql",
+    "project": "Mysql",
     "repo": "mysql/mysql-server",
-    "type": "db",
+    "type": "Db",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "postgres",
+    "project": "Postgres",
     "repo": "postgres/postgres",
-    "type": "db",
+    "type": "Db",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "ansible",
+    "project": "Ansible",
     "repo": "ansible/ansible",
-    "type": "DevOps",
+    "type": "Automation",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z",
     "version": "tag"
   },
   {
-    "project": "ceph",
+    "project": "Chef",
+    "repo": "chef/chef",
+    "type": "Automation",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Chef",
+    "repo": "puppetlabs/puppet",
+    "type": "Automation",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "SaltStack",
+    "repo": "saltstack/salt",
+    "type": "Automation",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Ceph",
     "repo": "ceph/ceph",
     "type": "Storage",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "glusterfs",
+    "project": "Glusterfs",
     "repo": "gluster/glusterfs",
     "type": "Storage",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "jumpserver",
+    "project": "MooseFS",
+    "repo": "moosefs/moosefs",
+    "type": "Storage",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Jumpserver",
     "repo": "jumpserver/jumpserver",
     "type": "DevOps",
     "hosting": "github",
@@ -389,6 +543,62 @@
     "project": "Archery",
     "repo": "hhyo/Archery",
     "type": "DevOps",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "gRPC",
+    "repo": "grpc/grpc",
+    "type": "Remote Procedure Call",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "NATS",
+    "repo": "nats-io/nats-server",
+    "type": "Message",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Kafka",
+    "repo": "apache/kafka",
+    "type": "Message",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "RabbitMQ",
+    "repo": "rabbitmq/rabbitmq-server",
+    "type": "Message",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "OpenTracing",
+    "repo": "opentracing/opentracing-go",
+    "type": "Tracing",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Jaeger",
+    "repo": "jaegertracing/jaeger",
+    "type": "Tracing",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Pinpoint",
+    "repo": "naver/pinpoint",
+    "type": "Tracing",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Zipkin",
+    "repo": "openzipkin/zipkin",
+    "type": "Tracing",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   }

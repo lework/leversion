@@ -157,7 +157,7 @@ export default {
   name: 'home',
   data () {
     return {
-      tags: ['Container', 'Monitor', 'Log', 'Orchestration', 'Discovery', 'Proxy', 'ServiceMesh', 'Network', 'Ci', 'versionControl', 'db', 'kv-Store'],
+      tags: ['Ci', 'Installer', 'Monitor', 'Log', 'Proxy', 'Discovery', 'Db', 'Pass', 'Container', 'ServiceMesh', 'Storage', 'Automation', 'Tracing', 'Network', 'VersionControl', 'Message', 'Orchestration', 'Registry', 'Gateway', 'DevOps', 'Config', 'package', 'kv-Store', 'Remote Procedure Call'],
       listData: [],
       updated_at: '',
       total: '',
