@@ -46,10 +46,16 @@
                   托管: <a-tag color="#8CD790">{{ item.hosting }}</a-tag>
                   类别: <a-tag color="#2db7f5"
                          @click="tagChange(item.type)">{{ item.type }}</a-tag>
-                  当前版本: <a-tag color="#108ee9"
-                         @click="tagClick(item.project, item.body)">{{ item.name || item.tag_name }}</a-tag>
-                  <a-tag color="#5bd1d7"
-                         @click="lastClick(item.project, item.html_url, item.repo)">最近版本</a-tag>
+                  当前版本: <a-tooltip placement="top"
+                             :title="item.created_at">
+                    <a-tag color="#108ee9"
+                           @click="tagClick(item.project, item.body)">{{ item.name || item.tag_name }}</a-tag>
+                  </a-tooltip>
+                  <a-tooltip placement="top"
+                             title="Last 10">
+                    <a-tag color="#5bd1d7"
+                           @click="lastClick(item.project, item.html_url, item.repo)">最近版本</a-tag>
+                  </a-tooltip>
                   创建时间: <a-tag color="#F17F42">{{ item.created_at || "None"  }}</a-tag>
                   <span v-if="shieldsShow">shield: </span>
                   <img v-if="shieldsShow && item.html_url.indexOf('release') !== -1"
@@ -81,7 +87,7 @@
                         <a-divider orientation="left">
                           <a target="_blank"
                              style="font-size: 20px;"
-                             :href="item.html_url">{{ item.name || item.tag_name }}</a></a-divider>
+                             :href="item.html_url">{{ item.name || item.tag_name }} [{{item.created_at}}]</a></a-divider>
                         <div v-html="readmeContent">
                         </div>
                       </div>
