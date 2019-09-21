@@ -465,7 +465,7 @@ export default {
 .ant-list-item-meta-description {
   @media screen{
     @media (max-width: @min-width) {
-      font-size: 8px;
+      font-size: 12px;
     }
   }
   .tag-title {
