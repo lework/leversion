@@ -465,7 +465,7 @@ export default {
 .ant-list-item-meta-description {
   @media screen{
     @media (max-width: @min-width) {
-      font-size: 12px;
+      font-size: 8px;
     }
   }
   .tag-title {
@@ -523,13 +523,18 @@ export default {
   font-size: 20px;
   @media screen{
     @media (max-width: @min-width) {
-      font-size: 10px;
+      font-size: 14px;
     }
   }
 }
 .repo-desc {
   width: 100%;
   word-break: break-word;
+  @media screen{
+    @media (max-width: @min-width) {
+      font-size: 12px;
+    }
+  }
   /deep/ pre code {
   display: block;
   overflow: auto;
