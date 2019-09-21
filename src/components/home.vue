@@ -529,11 +529,20 @@ export default {
 }
 .repo-desc {
   width: 100%;
-  /deep/ pre {
+  word-break: break-word;
+  /deep/ pre code {
   display: block;
   overflow: auto;
   background: #f4f4f4;
   padding: 5px 10px;
+  border: 1px solid #eee;
+  word-wrap:break-word;
+  white-space: pre-wrap;
+  }
+  /deep/ code {
+  overflow: auto;
+  padding: 1px;
+  background: #f4f4f4;
   border: 1px solid #eee;
   word-wrap:break-word;
   white-space: pre-wrap;
