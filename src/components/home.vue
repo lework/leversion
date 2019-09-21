@@ -79,7 +79,6 @@
                               <a target="_blank"
                                  :href="last.html_url">
                                 {{ last.name || last.tag_name }}</a> [{{last.created_at}}]
-
                             </a-timeline-item>
                           </template>
                         </a-timeline>
@@ -87,9 +86,9 @@
                       <div v-if="showInfo">
                         <a-divider orientation="left">
                           <a target="_blank"
-                             style="font-size: 20px;"
+                             class="info-title"
                              :href="item.html_url">{{ item.name || item.tag_name }} [{{item.created_at}}]</a></a-divider>
-                        <div v-html="readmeContent">
+                        <div class="repo-desc" v-html="readmeContent">
                         </div>
                       </div>
                     </a-spin>
@@ -105,7 +104,7 @@
           <a-list itemLayout="horizontal"
                   :dataSource="searchData"
                   v-if="searchData.length !== 0 && listData.length === 0">
-            <div slot="header">在下列中选择你的项目吧! 本次搜索到了<b>{{ searchCount }}</b>个，只显示star最高的10个.
+            <div slot="header" class="list-header">在下列中选择你的项目吧! 本次搜索到了<b>{{ searchCount }}</b>个，只显示star最高的10个.
             </div>
             <a-list-item slot="renderItem"
                          slot-scope="item, index">
@@ -175,6 +174,7 @@ export default {
       showLast: false,
       versionSpinning: true,
       lastData: [],
+      lastProject: '',
       searchData: [],
       searchCount: 0
     }
@@ -189,15 +189,16 @@ export default {
         this.project = ''
         return
       }
-      if (this.project !== project && url.indexOf('release') !== -1) {
+      if (this.lastProject !== project && url.indexOf('release') !== -1) {
         this._getGithubRelases(repo)
-      } else if (this.project !== project && url.indexOf('commit') !== -1) {
+      } else if (this.lastProject !== project && url.indexOf('commit') !== -1) {
         this._getGithubTags(repo, 'lastData')
       } else {
         this.versionSpinning = false
       }
 
       this.project = project
+      this.lastProject = project
       this.showLast = true
       this.showInfo = false
     },
@@ -374,13 +375,6 @@ export default {
 
 @min-width: 1000px;
 
-.list-header {
-  @media screen{
-    @media (max-width: @min-width) {
-      font-size: 10px;
-    }
-  }
-}
 .home {
   width: 100%;
   height: 100%;
@@ -516,6 +510,33 @@ export default {
     @media (max-width: @min-width) {
       font-size: 10px;
     }
+  }
+}
+.list-header {
+  @media screen{
+    @media (max-width: @min-width) {
+      font-size: 10px;
+    }
+  }
+}
+.info-title {
+  font-size: 20px;
+  @media screen{
+    @media (max-width: @min-width) {
+      font-size: 10px;
+    }
+  }
+}
+.repo-desc {
+  width: 100%;
+  /deep/ pre {
+  display: block;
+  overflow: auto;
+  background: #f4f4f4;
+  padding: 5px 10px;
+  border: 1px solid #eee;
+  word-wrap:break-word;
+  white-space: pre-wrap;
   }
 }
 </style>
