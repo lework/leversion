@@ -371,6 +371,7 @@ export default {
 </script>
 
 <style lang=less scoped>
+
 @min-width: 1000px;
 
 .list-header {
@@ -384,7 +385,6 @@ export default {
   width: 100%;
   height: 100%;
 }
-
 .header {
   z-index: 100;
   position: fixed;
@@ -426,13 +426,11 @@ export default {
     }
   }
 }
-
 .list-title {
   font-size: 16px;
   font-weight: bolder;
   font-family: "微软雅黑";
 }
-
 .main {
   position: relative;
   @media screen{
@@ -447,7 +445,6 @@ export default {
   padding: 10px 0;
   top: 80px;
 }
-
 .search {
   @media screen{
     @media (min-width: @min-width) {
@@ -515,5 +512,10 @@ export default {
   line-height: 32px;
   padding: 20px 0;
   color: rgba(0, 0, 0, 0.45);
+  @media screen{
+    @media (max-width: @min-width) {
+      font-size: 10px;
+    }
+  }
 }
 </style>
