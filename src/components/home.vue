@@ -32,7 +32,7 @@
                   :pagination="pagination"
                   :dataSource="listData"
                   v-if="listData.length !== 0">
-            <div slot="header"><b>更新时间: </b>{{ updated_at.toLocaleString() }} <b> 统计数目: </b>{{ total }}
+            <div slot="header" class="list-header"><b>更新时间: </b>{{ updated_at.toLocaleString() }} <b> 统计数目: </b>{{ total }}
               <div class="header-switch">
                 <a-switch checkedChildren="Shields"
                           unCheckedChildren="Shields"
@@ -44,10 +44,10 @@
                          key="item.title">
               <a-list-item-meta>
                 <div slot="description">
-                  托管: <a-tag color="#8CD790">{{ item.hosting }}</a-tag>
-                  类别: <a-tag color="#2db7f5"
+                  <span class="tag-title">托管: </span><a-tag color="#8CD790">{{ item.hosting }}</a-tag>
+                  <span class="tag-title">类别: </span><a-tag color="#2db7f5"
                          @click="tagChange(item.type)">{{ item.type }}</a-tag>
-                  当前{{ item.html_url.indexOf('release') !== -1 ? '版本' : 'Tag' }}: <a-tooltip placement="top"
+                  <span class="tag-title">当前{{ item.html_url.indexOf('release') !== -1 ? '版本' : 'Tag' }}: </span><a-tooltip placement="top"
                              :title="item.created_at">
                     <a-tag color="#108ee9"
                            @click="tagClick(item.project, item.body)">{{ item.name || item.tag_name }}</a-tag>
@@ -57,8 +57,8 @@
                     <a-tag color="#5bd1d7"
                            @click="lastClick(item.project, item.html_url, item.repo)">最近{{ item.html_url.indexOf('release') !== -1 ? '版本' : 'Tag' }}</a-tag>
                   </a-tooltip>
-                  创建时间: <a-tag color="#F17F42">{{ item.created_at || "None"  }}</a-tag>
-                  <span v-if="shieldsShow">shield: </span>
+                  <span class="tag-title">创建时间: </span><a-tag color="#F17F42">{{ item.created_at || "None"  }}</a-tag>
+                  <span v-if="shieldsShow" class="tag-title">shield: </span>
                   <img v-if="shieldsShow && item.html_url.indexOf('release') !== -1"
                        alt="GitHub release (latest by date)"
                        :src="'https://img.shields.io/github/v/release/'+ item.repo">
@@ -157,13 +157,14 @@ export default {
   name: 'home',
   data () {
     return {
-      tags: ['Ci', 'Installer', 'Monitor', 'Log', 'Proxy', 'Discovery', 'Db', 'Pass', 'Container', 'ServiceMesh', 'Storage', 'Automation', 'Tracing', 'Network', 'VersionControl', 'Message', 'Orchestration', 'Registry', 'Gateway', 'DevOps', 'Config', 'package', 'kv-Store', 'Remote Procedure Call'],
+      tags: ['Ci', 'Installer', 'Monitor', 'Log', 'Proxy', 'Discovery', 'Db', 'Pass', 'Container', 'ServiceMesh', 'Storage', 'Automation', 'Tracing', 'Network', 'VersionControl', 'Message', 'Orchestration', 'Registry', 'Gateway', 'DevOps', 'Config', 'Package', 'Kv-Store', 'Remote Procedure Call'],
       listData: [],
       updated_at: '',
       total: '',
       search_text: '',
       pagination: {
-        pageSize: 10
+        pageSize: 10,
+        size: 'small'
       },
       readmeContent: '',
       project: '',
@@ -369,11 +370,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang=less scoped>
+@min-width: 1000px;
+
+.list-header {
+  @media screen{
+    @media (max-width: @min-width) {
+      font-size: 10px;
+    }
+  }
+}
 .home {
   width: 100%;
   height: 100%;
 }
+
 .header {
   z-index: 100;
   position: fixed;
@@ -386,21 +397,34 @@ export default {
 }
 .container {
   height: 100%;
-  width: 1140px;
+  @media screen{
+    @media (min-width: @min-width) {
+      width: 1140px;
+    }
+  }
   margin: 0 auto;
   padding: 0 10px;
   border-bottom: 1px solid #dcdfe6;
 }
-
 .title {
   color: #409eff;
   font-size: 26px;
   font-weight: 500;
   font-family: "微软雅黑";
+  @media screen{
+    @media (max-width: @min-width) {
+      padding-left: 5px;
+    }
+  }
 }
 .title-desc {
   color: rgba(0, 0, 0, 0.45);
   margin-left: 10px;
+  @media screen{
+    @media (max-width: @min-width) {
+      font-size: 10px;
+    }
+  }
 }
 
 .list-title {
@@ -411,7 +435,11 @@ export default {
 
 .main {
   position: relative;
-  width: 1140px;
+  @media screen{
+    @media (min-width: @min-width) {
+      width: 1140px;
+    }
+  }
   height: -webkit-calc(100% - 80px);
   height: -moz-calc(100% - 80px);
   height: calc(100% - 80px);
@@ -419,20 +447,60 @@ export default {
   padding: 10px 0;
   top: 80px;
 }
+
 .search {
-  width: 600px;
+  @media screen{
+    @media (min-width: @min-width) {
+      width: 600px;
+    }
+    @media (max-width: @min-width) {
+      font-size: 10px;
+      padding: 50px 10px 20px;
+    }
+  }
   margin: 0 auto;
   text-align: center;
-  padding-top: 50px;
+  padding: 50px 10px;
 }
 .content {
   width: 100%;
-  padding: 50px 80px 20px 80px;
+  padding: 0px 80px 20px 80px;
+  @media screen{
+    @media (max-width: @min-width) {
+      padding: 0 20px 20px 20px;
+    }
+  }
+}
+.ant-list-item-meta-description {
+  @media screen{
+    @media (max-width: @min-width) {
+      font-size: 8px;
+    }
+  }
+  .tag-title {
+    @media screen{
+      @media (max-width: @min-width) {
+        display: none;
+      }
+    }
+  }
+  .ant-tag {
+    @media screen{
+      @media (max-width: @min-width) {
+        margin: 0;
+      }
+    }
+  }
 }
 .tips {
   margin-top: 10px;
 }
 .tips-tag {
+  @media screen{
+    @media (max-width: @min-width) {
+      font-size: 8px;
+    }
+  }
   margin-bottom: 5px;
 }
 .version-info {
