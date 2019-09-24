@@ -118,7 +118,7 @@
                   v-if="searchData.length !== 0 && listData.length === 0">
             <div slot="header"
                  v-if="!trending"
-                 class="list-header">在下列中选择你的项目吧! 本次搜索到了<b>{{ searchCount }}</b>个，只显示star最高的10个.
+                 class="list-header">在下列中选择你的项目吧! 本次搜索到了<b>{{ searchCount }}</b>个，只显示 Star <b>TOP10</b>.
             </div>
             <div slot="header"
                  v-if="trending"
@@ -487,7 +487,7 @@ export default {
   margin-left: 10px;
   @media screen {
     @media (max-width: @min-width) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 }
@@ -516,7 +516,7 @@ export default {
       width: 600px;
     }
     @media (max-width: @min-width) {
-      font-size: 10px;
+      font-size: 12px;
       padding: 50px 10px 20px;
     }
   }
@@ -536,7 +536,7 @@ export default {
 .ant-list-item-meta-description {
   @media screen {
     @media (max-width: @min-width) {
-      font-size: 8px;
+      font-size: 12px;
     }
   }
   .tag-title {
@@ -561,7 +561,7 @@ export default {
 .tips-tag {
   @media screen {
     @media (max-width: @min-width) {
-      font-size: 8px;
+      font-size: 12px;
     }
   }
   margin-bottom: 5px;
@@ -580,14 +580,14 @@ export default {
   color: rgba(0, 0, 0, 0.45);
   @media screen {
     @media (max-width: @min-width) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 }
 .list-header {
   @media screen {
     @media (max-width: @min-width) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 }
