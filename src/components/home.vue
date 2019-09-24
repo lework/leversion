@@ -15,6 +15,9 @@
                         enterButton="搜索..." />
         <div class="tips">
           <strong :style="{ marginRight: 8 }">常用类别:</strong>
+          <a-tag color="#df405a"
+                 style="margin: auto;"
+                 @click="trendClick">Trending</a-tag>
           <template v-for=" tag in tags">
             <a-tag :key="tag"
                    class="tips-tag"
@@ -32,9 +35,11 @@
                   :pagination="pagination"
                   :dataSource="listData"
                   v-if="listData.length !== 0">
-            <div slot="header" class="list-header"><b>更新时间: </b>{{ updated_at.toLocaleString() }} <b> 统计数目: </b>{{ total }}
+            <div slot="header"
+                 class="list-header"><b>更新时间: </b>{{ updated_at.toLocaleString() }} <b> 统计数目: </b>{{ total }}
               <div class="header-switch">
-                <a-switch checkedChildren="Shields"
+                <a-switch v-if="listData.length !== 0"
+                          checkedChildren="Shields"
                           unCheckedChildren="Shields"
                           @click="switchCheck" />
               </div>
@@ -44,10 +49,13 @@
                          key="item.title">
               <a-list-item-meta>
                 <div slot="description">
-                  <span class="tag-title">托管: </span><a-tag color="#8CD790">{{ item.hosting }}</a-tag>
-                  <span class="tag-title">类别: </span><a-tag color="#2db7f5"
+                  <span class="tag-title">托管: </span>
+                  <a-tag color="#8CD790">{{ item.hosting }}</a-tag>
+                  <span class="tag-title">类别: </span>
+                  <a-tag color="#2db7f5"
                          @click="tagChange(item.type)">{{ item.type }}</a-tag>
-                  <span class="tag-title">当前{{ item.html_url.indexOf('release') !== -1 ? '版本' : 'Tag' }}: </span><a-tooltip placement="top"
+                  <span class="tag-title">当前{{ item.html_url.indexOf('release') !== -1 ? '版本' : 'Tag' }}: </span>
+                  <a-tooltip placement="top"
                              :title="item.created_at">
                     <a-tag color="#108ee9"
                            @click="tagClick(item.project, item.body)">{{ item.name || item.tag_name }}</a-tag>
@@ -57,8 +65,10 @@
                     <a-tag color="#5bd1d7"
                            @click="lastClick(item.project, item.html_url, item.repo)">最近{{ item.html_url.indexOf('release') !== -1 ? '版本' : 'Tag' }}</a-tag>
                   </a-tooltip>
-                  <span class="tag-title">创建时间: </span><a-tag color="#F17F42">{{ item.created_at || "None"  }}</a-tag>
-                  <span v-if="shieldsShow" class="tag-title">shield: </span>
+                  <span class="tag-title">创建时间: </span>
+                  <a-tag color="#F17F42">{{ item.created_at || "None"  }}</a-tag>
+                  <span v-if="shieldsShow"
+                        class="tag-title">shield: </span>
                   <img v-if="shieldsShow && item.html_url.indexOf('release') !== -1"
                        alt="GitHub release (latest by date)"
                        :src="'https://img.shields.io/github/v/release/'+ item.repo">
@@ -88,7 +98,8 @@
                           <a target="_blank"
                              class="info-title"
                              :href="item.html_url">{{ item.name || item.tag_name }} [{{item.created_at}}]</a></a-divider>
-                        <div class="repo-desc" v-html="readmeContent">
+                        <div class="repo-desc"
+                             v-html="readmeContent">
                         </div>
                       </div>
                     </a-spin>
@@ -97,6 +108,7 @@
                 <a slot="title"
                    class="list-title"
                    target="_blank"
+                   :id="item.project"
                    :href="item.repo_url">{{ item.project[0].toUpperCase() + item.project.slice(1) }}</a>
               </a-list-item-meta>
             </a-list-item>
@@ -104,7 +116,13 @@
           <a-list itemLayout="horizontal"
                   :dataSource="searchData"
                   v-if="searchData.length !== 0 && listData.length === 0">
-            <div slot="header" class="list-header">在下列中选择你的项目吧! 本次搜索到了<b>{{ searchCount }}</b>个，只显示star最高的10个.
+            <div slot="header"
+                 v-if="!trending"
+                 class="list-header">在下列中选择你的项目吧! 本次搜索到了<b>{{ searchCount }}</b>个，只显示star最高的10个.
+            </div>
+            <div slot="header"
+                 v-if="trending"
+                 class="list-header">当天的Github Trending.
             </div>
             <a-list-item slot="renderItem"
                          slot-scope="item, index">
@@ -118,14 +136,18 @@
                     <a-icon type="fork" /> {{item.forks_count}}
                     <a-icon type="code"
                             theme="filled" /> {{item.language}}
-                    <a-tooltip placement="top">
+                    <a-tooltip placement="top"
+                               v-if="item.updated_at">
                       <template slot="title">
                         <span>最近更新</span>
                       </template>
                       <a-icon type="calendar"
                               theme="filled" /> {{item.updated_at}}
                     </a-tooltip>
-                    <span @click="tagChange(item.full_name)">查看版本</span>
+                    <span v-if="item.currentPeriodStars">
+                      <a-icon type="star"
+                              theme="filled" />{{item.currentPeriodStars}} stars today</span>
+                    <span @click="tagChange(item.full_name)"> [查看版本]</span>
                   </p>
                 </div>
 
@@ -163,7 +185,13 @@ export default {
       search_text: '',
       pagination: {
         pageSize: 10,
-        size: 'small'
+        size: 'small',
+        onChange: (page) => {
+          document.querySelector('#app').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
       },
       readmeContent: '',
       project: '',
@@ -176,12 +204,24 @@ export default {
       lastData: [],
       lastProject: '',
       searchData: [],
-      searchCount: 0
+      searchCount: 0,
+      trending: false,
+      trendData: []
     }
   },
   watch: {
   },
   methods: {
+    trendClick () {
+      this.spinning = true
+      this.listData = []
+      if (this.trending) {
+        this.searchData = this.trendData
+        this.spinning = false
+        return
+      }
+      this._getGithubTrending()
+    },
     lastClick (project, url, repo) {
       this.versionSpinning = true
       if (this.project === project && this.showLast) {
@@ -201,6 +241,10 @@ export default {
       this.lastProject = project
       this.showLast = true
       this.showInfo = false
+      // document.querySelector('#' + project).scrollIntoView({
+      //   behavior: 'smooth',
+      //   block: 'center'
+      // })
     },
     switchCheck (b) {
       this.spinning = true
@@ -222,6 +266,10 @@ export default {
       this.showInfo = true
       this.showLast = false
       this.versionSpinning = false
+      // document.querySelector('#' + project).scrollIntoView({
+      //   behavior: 'smooth',
+      //   block: 'center'
+      // })
     },
     tagChange (value) {
       this.search_text = value
@@ -360,6 +408,30 @@ export default {
         this.$message.error('没有搜索到项目！')
         console.log(e)
       })
+    },
+    _getGithubTrending () {
+      let url = 'https://github-trending-api.now.sh/repositories'
+      this.$axios.get(url).then((res) => {
+        this.trendData = []
+        for (let item in res.data) {
+          let data = {
+            'full_name': res.data[item]['author'] + '/' + res.data[item]['name'],
+            'html_url': res.data[item]['url'],
+            'description': res.data[item]['description'],
+            'forks_count': res.data[item]['forks'],
+            'stargazers_count': res.data[item]['stars'],
+            'language': res.data[item]['language'],
+            'currentPeriodStars': res.data[item]['currentPeriodStars']
+          }
+          this.trendData.push(data)
+        }
+        this.searchData = this.trendData
+        this.spinning = false
+        this.trending = true
+      }).catch((e) => {
+        this.$message.error('获取失败！')
+        console.log(e)
+      })
     }
   },
   mounted () {
@@ -372,7 +444,6 @@ export default {
 </script>
 
 <style lang=less scoped>
-
 @min-width: 1000px;
 
 .home {
@@ -391,7 +462,7 @@ export default {
 }
 .container {
   height: 100%;
-  @media screen{
+  @media screen {
     @media (min-width: @min-width) {
       width: 1140px;
     }
@@ -405,7 +476,7 @@ export default {
   font-size: 26px;
   font-weight: 500;
   font-family: "微软雅黑";
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       padding-left: 5px;
     }
@@ -414,7 +485,7 @@ export default {
 .title-desc {
   color: rgba(0, 0, 0, 0.45);
   margin-left: 10px;
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       font-size: 10px;
     }
@@ -427,7 +498,7 @@ export default {
 }
 .main {
   position: relative;
-  @media screen{
+  @media screen {
     @media (min-width: @min-width) {
       width: 1140px;
     }
@@ -440,7 +511,7 @@ export default {
   top: 80px;
 }
 .search {
-  @media screen{
+  @media screen {
     @media (min-width: @min-width) {
       width: 600px;
     }
@@ -456,27 +527,27 @@ export default {
 .content {
   width: 100%;
   padding: 0px 80px 20px 80px;
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       padding: 0 20px 20px 20px;
     }
   }
 }
 .ant-list-item-meta-description {
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       font-size: 8px;
     }
   }
   .tag-title {
-    @media screen{
+    @media screen {
       @media (max-width: @min-width) {
         display: none;
       }
     }
   }
   .ant-tag {
-    @media screen{
+    @media screen {
       @media (max-width: @min-width) {
         margin: 0;
       }
@@ -485,9 +556,10 @@ export default {
 }
 .tips {
   margin-top: 10px;
+  font-size: 14px;
 }
 .tips-tag {
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       font-size: 8px;
     }
@@ -506,14 +578,14 @@ export default {
   line-height: 32px;
   padding: 20px 0;
   color: rgba(0, 0, 0, 0.45);
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       font-size: 10px;
     }
   }
 }
 .list-header {
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       font-size: 10px;
     }
@@ -521,7 +593,7 @@ export default {
 }
 .info-title {
   font-size: 20px;
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       font-size: 14px;
     }
@@ -530,27 +602,30 @@ export default {
 .repo-desc {
   width: 100%;
   word-break: break-word;
-  @media screen{
+  @media screen {
     @media (max-width: @min-width) {
       font-size: 12px;
     }
   }
+  /deep/ img {
+    width: 100%;
+  }
   /deep/ pre code {
-  display: block;
-  overflow: auto;
-  background: #f4f4f4;
-  padding: 5px 10px;
-  border: 1px solid #eee;
-  word-wrap:break-word;
-  white-space: pre-wrap;
+    display: block;
+    overflow: auto;
+    background: #f4f4f4;
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    word-wrap: break-word;
+    white-space: pre-wrap;
   }
   /deep/ code {
-  overflow: auto;
-  padding: 1px;
-  background: #f4f4f4;
-  border: 1px solid #eee;
-  word-wrap:break-word;
-  white-space: pre-wrap;
+    overflow: auto;
+    padding: 1px;
+    background: #f4f4f4;
+    border: 1px solid #eee;
+    word-wrap: break-word;
+    white-space: pre-wrap;
   }
 }
 </style>
