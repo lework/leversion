@@ -7,6 +7,13 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
+    "project": "Mesos",
+    "repo": "apache/mesos",
+    "type": "Orchestration",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
     "project": "kind",
     "repo": "kubernetes-sigs/kind",
     "type": "Installer",
@@ -91,6 +98,13 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
+    "project": "Apollo",
+    "repo": "ctripcorp/apollo",
+    "type": "Config",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
     "project": "Flannel",
     "repo": "coreos/flannel",
     "type": "Network",
@@ -103,6 +117,13 @@
     "type": "Monitor",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Sentry",
+    "repo": "getsentry/sentry",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2019-09-30T11:11:37Z"
   },
   {
     "project": "Cni",
@@ -145,6 +166,13 @@
     "type": "Monitor",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Thanos",
+    "repo": "thanos-io/thanos",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2019-09-30T11:11:37Z"
   },
   {
     "project": "grafana",
@@ -198,6 +226,13 @@
   {
     "project": "Containerd",
     "repo": "containerd/containerd",
+    "type": "Container",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Podman",
+    "repo": "containers/libpod",
     "type": "Container",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
@@ -275,7 +310,7 @@
   {
     "project": "Helm",
     "repo": "helm/helm",
-    "type": "package",
+    "type": "Package",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
@@ -310,7 +345,7 @@
   {
     "project": "tikv",
     "repo": "tikv/tikv",
-    "type": "kv-Store",
+    "type": "Kv-Store",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
@@ -455,6 +490,13 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
+    "project": "M3",
+    "repo": "m3db/m3",
+    "type": "Db",
+    "hosting": "github",
+    "add_time": "2019-09-30T13:11:37Z"
+  },
+  {
     "project": "MongoDb",
     "repo": "mongoDb/mongo",
     "type": "Db",
@@ -535,6 +577,13 @@
   {
     "project": "Jumpserver",
     "repo": "jumpserver/jumpserver",
+    "type": "DevOps",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Teleport",
+    "repo": "gravitational/teleport",
     "type": "DevOps",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
