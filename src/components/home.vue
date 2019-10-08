@@ -134,7 +134,8 @@
                     <a-icon type="star"
                             theme="filled" /> {{item.stargazers_count}}
                     <a-icon type="fork" /> {{item.forks_count}}
-                    <a-icon type="code"
+                    <a-icon v-show="item.language"
+                            type="code"
                             theme="filled" /> {{item.language}}
                     <a-tooltip placement="top"
                                v-if="item.updated_at">
@@ -145,9 +146,8 @@
                               theme="filled" /> {{item.updated_at}}
                     </a-tooltip>
                     <span v-if="item.currentPeriodStars">
-                      <a-icon type="star"
-                              theme="filled" />{{item.currentPeriodStars}} stars today</span>
-                    <span @click="tagChange(item.full_name)"> [查看版本]</span>
+                      <a-icon type="star" /> {{item.currentPeriodStars}} stars today</span>
+                    <span @click="tagChange(item.full_name)"> [<b>查看版本</b>]</span>
                   </p>
                 </div>
 
@@ -163,6 +163,7 @@
       <div class="footer">
         <p><a href="https://github.com/lework/leversion/issues"
              target="_blank">告诉我们</a>，我们可能会把它带给您！</p>
+        <span>已稳定运行 <b>{{runDay}}</b> 天！</span>
         leversion ©2019 Created by Lework <a href="https://github.com/lework/leversion"
            target="_blank">GitHub</a>
       </div>
@@ -174,6 +175,8 @@
 
 <script>
 import marked from 'marked'
+import { Button, Icon, List, BackTop, Tooltip, Tag, Input, Spin, Switch, Divider, Timeline } from 'ant-design-vue'
+
 export default {
   name: 'home',
   data () {
@@ -206,8 +209,27 @@ export default {
       searchData: [],
       searchCount: 0,
       trending: false,
-      trendData: []
+      trendData: [],
+      runDay: parseInt((new Date().getTime() - new Date(Date.parse('2019-09-18'.replace(/-/g, '/'))).getTime()) / 1000 / 3600 / 24)
     }
+  },
+  components: {
+    AButton: Button,
+    AIcon: Icon,
+    AList: List,
+    AListItem: List.Item,
+    AListItemMeta: List.Item.Meta,
+    ABackTop: BackTop,
+    ATooltip: Tooltip,
+    ATag: Tag,
+    AInputSearch: Input.Search,
+    ASpin: Spin,
+    ASwitch: Switch,
+    ADivider: Divider,
+    ATimeline: Timeline,
+    ATimelineItem: Timeline.Item
+  },
+  computed: {
   },
   watch: {
   },
@@ -309,7 +331,7 @@ export default {
           this.spinning = false
         }
       }).catch((e) => {
-        this.$message.error('获取数据失败')
+        this.$message.error('获取数据失败!')
         console.log(e)
       })
     },
@@ -327,6 +349,7 @@ export default {
           for (let item in lastTags) {
             this[target].push({
               'tag_name': lastTags[item]['node']['name'],
+              'repo_url': 'https://github.com/' + repo,
               'html_url': lastTags[item]['node']['target']['commitUrl'] || '',
               'created_at': lastTags[item]['node']['target'].hasOwnProperty('tagger') ? lastTags[item]['node']['target']['tagger']['date'] : lastTags[item]['node']['target']['committedDate'],
               'project': repo,
@@ -343,12 +366,12 @@ export default {
           }
         }
         if (this[target].length === 0) {
-          this.$message.error('未找到项目的tags')
+          this.$message.error('未找到项目的tags!')
         }
         this.versionSpinning = false
         this.spinning = false
       }).catch((e) => {
-        this.$message.error('获取项目的tags失败')
+        this.$message.error('获取项目的tags失败!')
         console.log(e)
       })
     },
@@ -358,7 +381,7 @@ export default {
         this.lastData = res.data
         this.versionSpinning = false
       }).catch((e) => {
-        this.$message.error('获取项目的releases失败')
+        this.$message.error('获取项目的releases失败!')
         console.log(e)
       })
     },
@@ -382,7 +405,7 @@ export default {
         this.updated_at = new Date()
         this.spinning = false
       }).catch((e) => {
-        this.$message.error('没有找到项目的latest release版本！')
+        this.$message.error('没有找到项目的latest release版本!')
         console.log(e)
       })
     },
@@ -405,7 +428,7 @@ export default {
         }
         this.spinning = false
       }).catch((e) => {
-        this.$message.error('没有搜索到项目！')
+        this.$message.error('没有搜索到项目!')
         console.log(e)
       })
     },
@@ -429,7 +452,7 @@ export default {
         this.spinning = false
         this.trending = true
       }).catch((e) => {
-        this.$message.error('获取失败！')
+        this.$message.error('获取失败!')
         console.log(e)
       })
     }
