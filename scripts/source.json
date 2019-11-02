@@ -540,7 +540,7 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
-    "project": "Chef",
+    "project": "Puppet",
     "repo": "puppetlabs/puppet",
     "type": "Automation",
     "hosting": "github",
