@@ -87,19 +87,24 @@ def get_github_latest_release(pro):
         resp = requests.post(graphql_url, headers=headers, data=json.dumps(post_data))
         try:
             last_data = resp.json()['data']['repository']['refs']['edges'][0]['node']
-            commit_url = last_data['target']['commitUrl'].replace('/github.com/', '/api.github.com/repos/').replace(
-                '/commit/', '/commits/')
-            commit = requests.get(commit_url, headers=headers)
-            commit_data = commit.json()
-            data['tag_name'] = last_data['name']
-            if 'commit' in commit_data and commit.status_code == 200:
-                data['created_at'] = commit_data['commit']['committer']['date']
-                data['body'] = commit_data['commit']['message']
-                data['html_url'] = commit_data['html_url']
-            else:
-                data['created_at'] = last_data['target']['tagger']['date']
-                data['body'] = last_data['target']['message']
+            if last_data['target']['target']:
+                commit_url = last_data['target']['target']['commitUrl'].replace('/github.com/','/api.github.com/repos/').replace('/commit/', '/commits/')
+                data['created_at'] = last_data['target']['target']['committedDate']
+                data['body'] = last_data['target']['target']['message']
                 data['html_url'] = commit_url
+            else:
+                commit_url = last_data['target']['commitUrl'].replace('/github.com/', '/api.github.com/repos/').replace('/commit/', '/commits/')
+                commit = requests.get(commit_url, headers=headers)
+                commit_data = commit.json()
+
+                if 'commit' in commit_data and commit.status_code == 200:
+                    data['created_at'] = commit_data['commit']['committer']['date']
+                    data['body'] = commit_data['commit']['message']
+                    data['html_url'] = commit_data['html_url']
+                else:
+                    data['created_at'] = last_data['target']['tagger']['date']
+                    data['body'] = last_data['target']['message']
+                    data['html_url'] = commit_url
         except Exception as e:
             print(pro['repo'], e)
             print(resp.headers)
