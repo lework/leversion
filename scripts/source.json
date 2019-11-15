@@ -11,7 +11,8 @@
     "repo": "apache/mesos",
     "type": "Orchestration",
     "hosting": "github",
-    "add_time": "2019-09-16T11:11:37Z"
+    "add_time": "2019-09-16T11:11:37Z",
+	"version": "tag"
   },
   {
     "project": "kind",
@@ -277,7 +278,8 @@
     "repo": "Graylog2/graylog2-server",
     "type": "Log",
     "hosting": "github",
-    "add_time": "2019-09-16T11:11:37Z"
+    "add_time": "2019-09-16T11:11:37Z",
+    "version": "tag"
   },
   {
     "project": "Linkerd",
@@ -487,7 +489,8 @@
     "repo": "influxdata/influxDb",
     "type": "Db",
     "hosting": "github",
-    "add_time": "2019-09-16T11:11:37Z"
+    "add_time": "2019-09-16T11:11:37Z",
+	"version": "tag"
   },
   {
     "project": "M3",
@@ -537,7 +540,8 @@
     "repo": "chef/chef",
     "type": "Automation",
     "hosting": "github",
-    "add_time": "2019-09-16T11:11:37Z"
+    "add_time": "2019-09-16T11:11:37Z",
+    "version": "tag"
   },
   {
     "project": "Puppet",
