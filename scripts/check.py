@@ -63,7 +63,7 @@ def get_github_latest_release(pro):
             "query": """
 {
   repository(owner: "%s", name: "%s") {
-    refs(refPrefix: "refs/tags/", first: 5, orderBy: {field: TAG_COMMIT_DATE, direction: DESC}) {
+    refs(refPrefix: "refs/tags/", first: 3, orderBy: {field: TAG_COMMIT_DATE, direction: DESC}) {
       edges {
         node {
           name
@@ -71,11 +71,14 @@ def get_github_latest_release(pro):
             commitUrl
             ... on Tag {
               message
+              commitUrl
               tagger {
                 date
               }
             }
             ... on Commit {
+              message
+              commitUrl
               committedDate
             }
           }
@@ -87,7 +90,7 @@ def get_github_latest_release(pro):
         resp = requests.post(graphql_url, headers=headers, data=json.dumps(post_data))
         try:
             last_data = resp.json()['data']['repository']['refs']['edges'][0]['node']
-            if last_data['target']['target']:
+            if 'target' in last_data['target'] and last_data['target']['target']:
                 commit_url = last_data['target']['target']['commitUrl'].replace('/github.com/','/api.github.com/repos/').replace('/commit/', '/commits/')
                 data['created_at'] = last_data['target']['target']['committedDate']
                 data['body'] = last_data['target']['target']['message']

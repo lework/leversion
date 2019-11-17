@@ -2,7 +2,7 @@ name:  checkVersion
 
 on:
   schedule:
-    - cron:  '0 1 * * 0-4'
+    - cron:  '0 1 * * 1-5'
 
 jobs:
   check:
