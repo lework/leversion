@@ -9,12 +9,10 @@
 import os
 import sys
 import json
-import threading
 import time
-from datetime import datetime
-
 import requests
-
+import threading
+from datetime import datetime
 
 source_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'source.json')
 data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../static/data/data.json')
@@ -22,8 +20,8 @@ docs_data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../do
 
 token = os.environ.get('GITHUB_TOKEN', '')
 if token == '':
-  print('[Error] not found token.')
-  sys.exit(1)
+    print('[Error] not found token.')
+    sys.exit(1)
 
 headers = {"Content-Type": 'application/json; charset=utf-8', "Authorization": "token %s" % token}
 
@@ -75,11 +73,13 @@ def get_github_latest_release(pro):
               tagger {
                 date
               }
-            }
-            ... on Commit {
-              message
-              commitUrl
-              committedDate
+              target {
+                ... on Commit {
+                  message
+                  commitUrl
+                  committedDate
+                }
+              }
             }
           }
         }
@@ -90,6 +90,7 @@ def get_github_latest_release(pro):
         resp = requests.post(graphql_url, headers=headers, data=json.dumps(post_data))
         try:
             last_data = resp.json()['data']['repository']['refs']['edges'][0]['node']
+            data['tag_name'] = last_data['name']
             if 'target' in last_data['target'] and last_data['target']['target']:
                 commit_url = last_data['target']['target']['commitUrl'].replace('/github.com/','/api.github.com/repos/').replace('/commit/', '/commits/')
                 data['created_at'] = last_data['target']['target']['committedDate']
@@ -110,8 +111,8 @@ def get_github_latest_release(pro):
                     data['html_url'] = commit_url
         except Exception as e:
             print(pro['repo'], e)
-            print(resp.headers)
-            print(resp.json())
+            print(json.dumps(resp.headers))
+            print(json.dumps(resp.json()))
     else:
         data = resp.json()
     data['repo_url'] = "https://github.com/%s" % pro['repo']
