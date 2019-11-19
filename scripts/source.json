@@ -12,7 +12,7 @@
     "type": "Orchestration",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z",
-	"version": "tag"
+    "version": "tag"
   },
   {
     "project": "kind",
@@ -490,7 +490,7 @@
     "type": "Db",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z",
-	"version": "tag"
+    "version": "tag"
   },
   {
     "project": "M3",
@@ -654,5 +654,12 @@
     "type": "Tracing",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
+  },
+  {
+    "project": "Vitess",
+    "repo": "vitessio/vitess",
+    "type": "Storage",
+    "hosting": "github",
+    "add_time": "2019-11-19T11:11:37Z"
   }
 ]

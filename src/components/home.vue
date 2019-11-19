@@ -166,6 +166,16 @@
         <span>已稳定运行 <b>{{runDay}}</b> 天！</span>
         leversion ©2019 Created by Lework <a href="https://github.com/lework/leversion"
            target="_blank">GitHub</a>
+
+        <a-popover placement="top">
+          <template slot="content">
+            <img src="https://v.leops.cn/static/images/wxxcx.png"  width="50%"/>
+          </template>
+          <template slot="title" style="text-align: center;">
+            <span >扫码来体验</span>
+          </template>
+          <a href="#">微信小程序</a>
+        </a-popover>
       </div>
 
     </div>
@@ -175,7 +185,8 @@
 
 <script>
 import marked from 'marked'
-import { Button, Icon, List, BackTop, Tooltip, Tag, Input, Spin, Switch, Divider, Timeline } from 'ant-design-vue'
+import { Button, Icon, List, BackTop, Tooltip, Tag, Input, Spin, Switch, Divider, Timeline, Popover } from 'ant-design-vue'
+import { formatTime } from '@/utils/util'
 
 export default {
   name: 'home',
@@ -227,7 +238,8 @@ export default {
     ASwitch: Switch,
     ADivider: Divider,
     ATimeline: Timeline,
-    ATimelineItem: Timeline.Item
+    ATimelineItem: Timeline.Item,
+    APopover: Popover
   },
   computed: {
   },
@@ -283,7 +295,7 @@ export default {
         this.showInfo = false
         return
       }
-      this.readmeContent = marked(data || 'None')
+      this.readmeContent = marked(data || 'None', { breaks: true })
       this.project = project
       this.showInfo = true
       this.showLast = false
@@ -308,8 +320,11 @@ export default {
       this.spinning = true
       this.$axios.get('static/data/data.json').then((rep) => {
         this.listData = rep.data['data']
+        this.listData.forEach((e) => {
+          e['created_at'] = formatTime(new Date(e['created_at']))
+        })
         this.total = rep.data['total']
-        this.updated_at = rep.data['updated_at']
+        this.updated_at = formatTime(new Date(rep.data['updated_at']))
         if (search !== '') {
           for (let i = 0; i < this.listData.length; i++) {
             if (this.listData[i]['type'].toLowerCase().indexOf(search.toLowerCase()) === -1 && this.listData[i]['project'].toLowerCase().indexOf(search.toLowerCase()) === -1) {
@@ -351,7 +366,7 @@ export default {
               'tag_name': lastTags[item]['node']['name'],
               'repo_url': 'https://github.com/' + repo,
               'html_url': lastTags[item]['node']['target']['commitUrl'] || '',
-              'created_at': lastTags[item]['node']['target'].hasOwnProperty('tagger') ? lastTags[item]['node']['target']['tagger']['date'] : lastTags[item]['node']['target']['committedDate'],
+              'created_at': lastTags[item]['node']['target'].hasOwnProperty('tagger') ? formatTime(new Date(lastTags[item]['node']['target']['tagger']['date'])) : formatTime(new Date(lastTags[item]['node']['target']['committedDate'])),
               'project': repo,
               'repo': repo,
               'body': lastTags[item]['node']['target']['message'],
@@ -394,7 +409,7 @@ export default {
           'html_url': res.data['html_url'],
           'repo_url': 'https://github.com/' + repo,
           'body': res.data['body'],
-          'created_at': res.data['created_at'],
+          'created_at': formatTime(new Date(res.data['created_at'])),
           'project': repo,
           'repo': repo,
           'hosting': 'github',
@@ -422,7 +437,7 @@ export default {
             'forks_count': res.data['items'][item]['forks_count'],
             'stargazers_count': res.data['items'][item]['stargazers_count'],
             'language': res.data['items'][item]['language'],
-            'updated_at': res.data['items'][item]['updated_at']
+            'updated_at': formatTime(new Date(res.data['items'][item]['updated_at']))
           }
           this.searchData.push(data)
         }
