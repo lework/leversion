@@ -169,10 +169,12 @@
 
         <a-popover placement="top">
           <template slot="content">
-            <img src="https://v.leops.cn/static/images/wxxcx.png"  width="50%"/>
+            <img src="https://v.leops.cn/static/images/wxxcx.png"
+                 style="width: 200px;height: 200px;" />
           </template>
-          <template slot="title" style="text-align: center;">
-            <span >扫码来体验</span>
+          <template slot="title"
+                    style="text-align: center;">
+            <span>扫码来体验</span>
           </template>
           <a href="#">微信小程序</a>
         </a-popover>

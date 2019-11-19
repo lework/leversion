@@ -36,7 +36,7 @@ python3 scripts/check.py
 
 > 欢迎扫码体验
 
-<img src="./static/images/wxxcx.png" width="50%"/>
+<img src="./static/images/wxxcx.png" width="20%"/>
 
 ## 参与贡献
 
