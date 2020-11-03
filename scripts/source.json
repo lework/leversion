@@ -15,6 +15,14 @@
     "version": "tag"
   },
   {
+    "project": "Nomad",
+    "repo": "hashicorp/nomad",
+    "type": "Orchestration",
+    "hosting": "github",
+    "add_time": "2019-09-16T11:11:37Z",
+    "version": "tag"
+  },
+  {
     "project": "kind",
     "repo": "kubernetes-sigs/kind",
     "type": "Installer",
@@ -279,6 +287,13 @@
     "type": "Log",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z",
+    "version": "tag"
+  },
+  {
+    "project": "loki",
+    "repo": "grafana/loki",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z",
     "version": "tag"
   },
   {
@@ -581,7 +596,7 @@
   {
     "project": "Jumpserver",
     "repo": "jumpserver/jumpserver",
-    "type": "DevOps",
+    "type": "Security",
     "hosting": "github",
     "add_time": "2019-09-16T11:11:37Z"
   },
@@ -656,10 +671,66 @@
     "add_time": "2019-09-16T11:11:37Z"
   },
   {
+    "project": "Tempo",
+    "repo": "grafana/tempo",
+    "type": "Tracing",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z"
+  },
+  {
     "project": "Vitess",
     "repo": "vitessio/vitess",
     "type": "Storage",
     "hosting": "github",
     "add_time": "2019-11-19T11:11:37Z"
+  },
+  {
+    "project": "Terraform",
+    "repo": "hashicorp/terraform",
+    "type": "Infrastructure",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z"
+  },
+  {
+    "project": "packer",
+    "repo": "hashicorp/terraform",
+    "type": "Infrastructure",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z"
+  },
+  {
+    "project": "Vagrant",
+    "repo": "hashicorp/vagrant",
+    "type": "Infrastructure",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z"
+  },
+  {
+    "project": "Waypoint",
+    "repo": "hashicorp/waypoint",
+    "type": "Build",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z"
+  },
+  {
+    "project": "Waypoint",
+    "repo": "hashicorp/waypoint",
+    "type": "Build",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z"
+  },
+  {
+    "project": "Vault",
+    "repo": "hashicorp/vault",
+    "type": "Security",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z"
+  },
+  {
+    "project": "Boundary",
+    "repo": "hashicorp/boundary",
+    "type": "Security",
+    "hosting": "github",
+    "add_time": "2020-11-01T11:11:37Z"
   }
 ]
