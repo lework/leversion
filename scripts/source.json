@@ -292,6 +292,7 @@
   {
     "project": "loki",
     "repo": "grafana/loki",
+    "type": "Log",
     "hosting": "github",
     "add_time": "2020-11-01T11:11:37Z",
     "version": "tag"
