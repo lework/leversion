@@ -694,7 +694,7 @@
   },
   {
     "project": "packer",
-    "repo": "hashicorp/terraform",
+    "repo": "hashicorp/packer",
     "type": "Infrastructure",
     "hosting": "github",
     "add_time": "2020-11-01T11:11:37Z"
@@ -703,13 +703,6 @@
     "project": "Vagrant",
     "repo": "hashicorp/vagrant",
     "type": "Infrastructure",
-    "hosting": "github",
-    "add_time": "2020-11-01T11:11:37Z"
-  },
-  {
-    "project": "Waypoint",
-    "repo": "hashicorp/waypoint",
-    "type": "Build",
     "hosting": "github",
     "add_time": "2020-11-01T11:11:37Z"
   },
