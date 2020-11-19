@@ -726,5 +726,131 @@
     "type": "Security",
     "hosting": "github",
     "add_time": "2020-11-01T11:11:37Z"
+  },
+  {
+    "project": "TUF",
+    "repo": "theupdateframework/specification",
+    "type": "Software Update",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Buildpacks",
+    "repo": "buildpacks/pack",
+    "type": "Package",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "CloudEvents",
+    "repo": "cloudevents/spec",
+    "type": "Serverless",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Contour",
+    "repo": "projectcontour/contour",
+    "type": "ingress controller",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Cortex",
+    "repo": "cortexproject/cortex",
+    "type": "Monitor",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Dragonfly",
+    "repo": "dragonflyoss/dragonfly",
+    "type": "Image Distribution",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Dragonfly",
+    "repo": "dragonflyoss/dragonfly",
+    "type": "Image Distribution",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Falco",
+    "repo": "falcosecurity/falco",
+    "type": "Container Security",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "KubeEdge",
+    "repo": "kubeedge/kubeedge",
+    "type": "Edge",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Notary",
+    "repo": "theupdateframework/notary",
+    "type": "Security",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Open Policy Agent",
+    "repo": "open-policy-agent/opa",
+    "type": "Policy",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Operator Framework",
+    "repo": "operator-framework/operator-sdk",
+    "type": "Operator",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "BFE",
+    "repo": "bfenetworks/bfe",
+    "type": "Load Balancing",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Chaos Mesh",
+    "repo": "chaos-mesh/chaos-mesh",
+    "type": "Chaos",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "Longhorn",
+    "repo": "longhorn/longhorn",
+    "type": "Storage",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "OpenEBS",
+    "repo": "openebs/openebs",
+    "type": "Storage",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "OpenMetrics",
+    "repo": "OpenObservability/OpenMetrics",
+    "type": "Metrics",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
+  },
+  {
+    "project": "VictoriaMetrics",
+    "repo": "VictoriaMetrics/VictoriaMetrics",
+    "type": "Db",
+    "hosting": "github",
+    "add_time": "2020-11-15T11:11:37Z"
   }
 ]
