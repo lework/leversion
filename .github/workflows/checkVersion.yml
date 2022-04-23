@@ -35,3 +35,5 @@ jobs:
         push-branch: 'master'
         commit-message: 'This is an github action commit.'
         force-add: 'true'
+        name: lework
+        email: lework@yeah.net
